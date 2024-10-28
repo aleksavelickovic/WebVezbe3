@@ -24,7 +24,7 @@ public class HelloWorldController {
 				+ "<title>Insert title here</title>\r\n"
 				+ "</head>\r\n"
 				+ "<body>\r\n"
-				+ "	Hello world!!!!!!!!!\r\n"
+				+ "	Hello world! Ovo je druga metoda\r\n"
 				+ "</body>\r\n"
 				+ "</html>";
 	}
