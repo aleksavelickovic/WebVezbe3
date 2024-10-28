@@ -66,7 +66,6 @@ public class OsobaController implements ServletContextAware {
 			Osoba osobaPrikaz = osobe.get(i);
 		 htmlPrikaz += "<p>" + (i+1) + "</p>" + "<p>Ime: " + osobaPrikaz.getIme() + "</p>" + "<p>Prezime: " + osobaPrikaz.getPrezime() + "</p>"
 				 + "<a href=\"/osoba/prikazOsobe?index=" + i +"\">Prikazi Osobu</a>"
-				 + "<a href=\"/osoba/obrisiOsobu?index=" + i +"\">Obrisi Osobu</a>"
 				 +" <form action=\"obrisiOsobu\" method=\"post\">\r\n"
 				 + "    <button name=\"index\" value=\"" + i + "\">Obrisi osobu</button>\r\n"
 				 + "</form>";
@@ -79,31 +78,6 @@ public class OsobaController implements ServletContextAware {
 			
 	}
 	
-	@GetMapping("ispisiOsobe")
-	@ResponseBody
-	public String ispisiOsobe() {
-		
-		
-		List<Osoba> osobe = (List<Osoba>) this.servletContext.getAttribute("osobe");
-		
-		
-		String htmlPrikaz = "<html> "
-				+ "<body>";
-		for(int i = 0; i < osobe.size(); i++) {
-			Osoba osobaPrikaz = osobe.get(i);
-		 htmlPrikaz += "<p>" + (i+1) + "</p>" + "<p>Ime: " + osobaPrikaz.getIme() + "</p>" + "<p>Prezime: " + osobaPrikaz.getPrezime() + "</p>"
-				 + "<a href=\"/osoba/prikazOsobe?index=" + i +"\">Prikazi Osobu</a>"
-				 +" <form action=\"obrisiOsobu\" method=\"post\">\r\n"
-				 + "    <button name=\"index\" value=\"" + i + "\">Obrisi osobu</button>\r\n"
-				 + "</form>";
-		 		
-		};
-		
-		htmlPrikaz += "</body></html>";
-		
-		return htmlPrikaz;
-			
-	}
 	
 	@PostMapping("obrisiOsobu")
 	@ResponseBody
