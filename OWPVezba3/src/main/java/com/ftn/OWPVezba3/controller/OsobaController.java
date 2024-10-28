@@ -99,16 +99,7 @@ public class OsobaController implements ServletContextAware {
 		htmlPrikaz += "</body></html>";
 		
 		return htmlPrikaz;
-//		return "<html><body><form action=\"ispisiOsobe	\"  method=\"GET\">"
-//				+ "<button type=\"submit\">Nazad</button> "
-//				+ "</form></body></html>";
-//		try {
-//			response.sendRedirect("/osobe/dodajOsobu");
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-////		return "/dodaj-osobu.html";
+
 	}
 
 	
