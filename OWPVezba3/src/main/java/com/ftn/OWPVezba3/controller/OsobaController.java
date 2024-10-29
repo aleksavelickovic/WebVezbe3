@@ -1,6 +1,7 @@
 package com.ftn.OWPVezba3.controller;
 
 import java.io.IOException;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -68,7 +69,8 @@ public class OsobaController implements ServletContextAware {
 				 + "<a href=\"/osoba/prikazOsobe?index=" + i +"\">Prikazi Osobu</a>"
 				 +" <form action=\"obrisiOsobu\" method=\"post\">\r\n"
 				 + "    <button name=\"index\" value=\"" + i + "\">Obrisi osobu</button>\r\n"
-				 + "</form>";
+				 + "</form>"
+				 + "<a href=\"/osoba/izmenaOsobe?index=" + i + "\">Izmeni Osobu</a>";
 		 		
 		};
 		
@@ -76,6 +78,50 @@ public class OsobaController implements ServletContextAware {
 		
 		return htmlPrikaz;
 			
+	}
+	
+	@GetMapping("izmenaOsobe")
+	@ResponseBody
+	public String izmeniOsobu(@RequestParam int index) {
+		List<Osoba> osobe = (List<Osoba>) this.servletContext.getAttribute("osobe");
+		return "<!DOCTYPE html>\r\n"
+				+ "<html>\r\n"
+				+ "<head>\r\n"
+				+ "<meta charset=\"UTF-8\">\r\n"
+				+ "<title>Insert title here</title>\r\n"
+				+ "</head>\r\n"
+				+ "<body>\r\n"
+				+ "	<form action=\"/osoba/izmeniOsobu?index=" + index + "\" method=\"post\">\r\n"
+				+ "		<input type = \"text\" value=\"" + osobe.get(index).getIme() + "\" name= \"ime\" /> <br>\r\n"
+				+ "		<input type = \"text\" value=\"" + osobe.get(index).getPrezime() + "\" name = \"prezime\"/> <br>\r\n"
+				+ "		<input type = \"submit\" value = \"Potrvrdi\"/>\r\n"
+				+ "	</form>\r\n"
+				+ "</body>\r\n"
+				+ "</html>";
+	}
+	
+	@PostMapping("izmeniOsobu")
+	@ResponseBody
+	public String izmenaPost(@RequestParam String ime, @RequestParam String prezime, @RequestParam int index) {
+		List<Osoba> osobe = (List<Osoba>) this.servletContext.getAttribute("osobe");
+		osobe.get(index).setIme(ime);
+		osobe.get(index).setPrezime(prezime);
+		String htmlPrikaz = "<html> "
+				+ "<body>";
+		for(int i = 0; i < osobe.size(); i++) {
+			Osoba osobaPrikaz = osobe.get(i);
+		 htmlPrikaz += "<p>" + (i+1) + "</p>" + "<p>Ime: " + osobaPrikaz.getIme() + "</p>" + "<p>Prezime: " + osobaPrikaz.getPrezime() + "</p>"
+				 + "<a href=\"/osoba/prikazOsobe?index=" + i +"\">Prikazi Osobu</a>"
+				 +" <form action=\"obrisiOsobu\" method=\"post\">\r\n"
+				 + "    <button name=\"index\" value=\"" + i + "\">Obrisi osobu</button>\r\n"
+				 + "</form>"
+				 + "<a href=\"/osoba/izmenaOsobe?index=" + i + "\">Izmeni Osobu</a>";
+		 		
+		};
+		
+		htmlPrikaz += "</body></html>";
+		
+		return htmlPrikaz;
 	}
 	
 	
@@ -90,9 +136,10 @@ public class OsobaController implements ServletContextAware {
 			Osoba osobaPrikaz = osobe.get(i);
 		 htmlPrikaz += "<p>" + (i+1) + "</p>" + "<p>Ime: " + osobaPrikaz.getIme() + "</p>" + "<p>Prezime: " + osobaPrikaz.getPrezime() + "</p>"
 				 + "<a href=\"/osoba/prikazOsobe?index=" + i +"\">Prikazi Osobu</a>"
-				 + " <form action=\"obrisiOsobu\" method=\"post\">\r\n"
+				 +" <form action=\"obrisiOsobu\" method=\"post\">\r\n"
 				 + "    <button name=\"index\" value=\"" + i + "\">Obrisi osobu</button>\r\n"
-				 + "</form>";
+				 + "</form>"
+				 + "<a href=\"/osoba/izmenaOsobe?index=" + i + "\">Izmeni Osobu</a>";
 		 		
 		};
 		
