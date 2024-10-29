@@ -38,12 +38,13 @@ public class OsobaController implements ServletContextAware {
 	@PostConstruct
 	public void init() {
 		List<Osoba> osobe = new ArrayList<Osoba>();
+		osobe.add(new Osoba("Pera", "Peric"));
 		this.servletContext.setAttribute("osobe", osobe);
 	}
 	
 	@GetMapping
 	public String getDodajOsobu() {
-		return "/dodaj-osobu.html";
+		return "/uloguj-se.html";
 	}
 	
 	@GetMapping("prikazOsobe")
