@@ -25,6 +25,7 @@ public class HelloWorldController {
 				+ "</head>\r\n"
 				+ "<body>\r\n"
 				+ "	Hello world! Ovo je druga metoda\r\n"
+				+ "<p>"+Math.random()+"</p>"
 				+ "</body>\r\n"
 				+ "</html>";
 	}
