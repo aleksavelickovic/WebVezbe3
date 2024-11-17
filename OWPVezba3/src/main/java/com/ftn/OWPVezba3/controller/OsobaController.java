@@ -28,11 +28,11 @@ public class OsobaController implements ServletContextAware {
 	@Override
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
-	
 	}
 	
 	@PostConstruct
 	public void init() {
+		
 		List<Osoba> osobe = new ArrayList<Osoba>();
 		osobe.add(new Osoba("Pera", "Peric"));
 		this.servletContext.setAttribute("osobe", osobe);
@@ -43,6 +43,7 @@ public class OsobaController implements ServletContextAware {
 		return "/uloguj-se.html";
 	}
 	
+	@SuppressWarnings("unchecked")
 	@GetMapping("prikazOsobe")
 	@ResponseBody
 	public String prikaziOsobu(@RequestParam int index) {
@@ -50,6 +51,7 @@ public class OsobaController implements ServletContextAware {
 		return "<html><body>" + "<p>" + osobe.get(index).getIme() + "</p></body></html>";
 	}
 	
+	@SuppressWarnings("unchecked")
 	@PostMapping("dodajOsobu")
 	@ResponseBody
 	public String dodajOsobu(@RequestParam String ime, @RequestParam String prezime) {
@@ -77,6 +79,7 @@ public class OsobaController implements ServletContextAware {
 			
 	}
 	
+	@SuppressWarnings("unchecked")
 	@GetMapping("izmenaOsobe")
 	@ResponseBody
 	public String izmeniOsobu(@RequestParam int index) {
@@ -97,6 +100,7 @@ public class OsobaController implements ServletContextAware {
 				+ "</html>";
 	}
 	
+	@SuppressWarnings("unchecked")
 	@PostMapping("izmeniOsobu")
 	@ResponseBody
 	public String izmenaPost(@RequestParam String ime, @RequestParam String prezime, @RequestParam int index) {
@@ -122,6 +126,7 @@ public class OsobaController implements ServletContextAware {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@PostMapping("obrisiOsobu")
 	@ResponseBody
 	public String obrisiOsobu(@RequestParam int index, HttpServletResponse response) {
